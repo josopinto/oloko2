@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Landing Page | Seu Negócio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a0d2e 0%, #2d1b4e 50%, #4a2c6a 100%);
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2a0845 0%, #4a1958 50%, #6b2d6c 100%);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(139, 69, 255, 0.1);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.1; }
+      50% { opacity: 0.3; }
+    }
+
+    header h1 {
+      font-size: 3em;
+      margin-bottom: 15px;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 1;
+    }
+
+    header p {
+      font-size: 1.3em;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.2em;
+      margin-bottom: 50px;
+      color: #e6d7ff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .beneficios {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .beneficio {
+      background: linear-gradient(135deg, #4a2c6a 0%, #6b2d6c 100%);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(139, 69, 255, 0.3);
+      border: 1px solid rgba(139, 69, 255, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .beneficio::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .beneficio:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(139, 69, 255, 0.4);
+    }
+
+    .beneficio:hover::before {
+      left: 100%;
+    }
+
+    .beneficio h3 {
+      font-size: 1.4em;
+      margin-bottom: 15px;
+      color: #e6d7ff;
+    }
+
+    .beneficio p {
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .formulario {
+      background: linear-gradient(135deg, #2a0845 0%, #4a1958 100%);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      border: 2px solid rgba(139, 69, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .formulario::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #8b45ff, #a855f7, #c084fc, #8b45ff);
+      border-radius: 20px;
+      z-index: -1;
+      animation: borderGlow 3s linear infinite;
+    }
+
+    @keyframes borderGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .formulario h2 {
+      color: #e6d7ff;
+      margin-bottom: 30px;
+      font-size: 2em;
+    }
+
+    .formulario input {
+      width: 100%;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      border: 2px solid rgba(139, 69, 255, 0.3);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .formulario select, .formulario textarea {
+      width: 100%;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      border: 2px solid rgba(139, 69, 255, 0.3);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .formulario select option {
+      background: #2a0845;
+      color: white;
+    }
+
+    .formulario textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .formulario input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .formulario textarea::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .formulario input:focus, .formulario select:focus, .formulario textarea:focus {
+      outline: none;
+      border-color: #8b45ff;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 15px rgba(139, 69, 255, 0.3);
+    }
+
+    .formulario button {
+      width: 100%;
+      padding: 18px;
+      font-size: 18px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #8b45ff 0%, #a855f7 50%, #c084fc 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .formulario button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .formulario button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(139, 69, 255, 0.4);
+    }
+
+    .formulario button:hover::before {
+      left: 100%;
+    }
+
+    .formulario button:active {
+      transform: translateY(0);
+    }
+
+    /* Seção de Produtos */
+    .produtos-section {
+      background: linear-gradient(135deg, #1a0d2e 0%, #2d1b4e 100%);
+      padding: 80px 20px;
+      margin-top: 60px;
+    }
+
+    .produtos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .produto {
+      background: linear-gradient(135deg, #4a2c6a 0%, #6b2d6c 100%);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(139, 69, 255, 0.3);
+      border: 1px solid rgba(139, 69, 255, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .produto::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .produto:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(139, 69, 255, 0.4);
+    }
+
+    .produto:hover::before {
+      left: 100%;
+    }
+
+    .produto-icon {
+      font-size: 3em;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .produto h3 {
+      font-size: 1.5em;
+      color: #e6d7ff;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .produto p {
+      opacity: 0.9;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .produto-preco {
+      background: linear-gradient(135deg, #8b45ff 0%, #a855f7 100%);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+
+    .produto-features {
+      list-style: none;
+      padding: 0;
+    }
+
+    .produto-features li {
+      padding: 8px 0;
+      opacity: 0.9;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .produto-features li:last-child {
+      border-bottom: none;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #1a0d2e 0%, #2a0845 100%);
+      color: rgba(255, 255, 255, 0.8);
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 60px;
+      border-top: 1px solid rgba(139, 69, 255, 0.2);
+    }
+
+    .success-message {
+      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      display: none;
+      animation: slideIn 0.5s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2em;
+      }
+      
+      header p {
+        font-size: 1.1em;
+      }
+
+      .beneficios {
+        grid-template-columns: 1fr;
+      }
+
+      .formulario {
+        padding: 30px 20px;
+      }
+
+      section {
+        padding: 40px 15px;
+      }
+
+      .produtos-section {
+        padding: 60px 15px;
+      }
+
+      .produtos-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 60px 15px;
+      }
+      
+      header h1 {
+        font-size: 1.8em;
+      }
+
+      h2 {
+        font-size: 1.8em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Transforme Seu Negócio com a Nossa Solução!</h1>
+    <p>Cadastre-se agora e receba uma consultoria gratuita.</p>
+  </header>
+
+  <section>
+    <h2>Por que escolher a gente?</h2>
+    <div class="beneficios">
+      <div class="beneficio">
+        <h3>🚀 Resultado Rápido</h3>
+        <p>Veja mudanças visíveis já nas primeiras semanas de uso com nossa metodologia comprovada.</p>
+      </div>
+      <div class="beneficio">
+        <h3>📊 Dados Inteligentes</h3>
+        <p>Análises avançadas e insights que ajudam você a tomar decisões mais assertivas e estratégicas.</p>
+      </div>
+      <div class="beneficio">
+        <h3>🤝 Suporte Especializado</h3>
+        <p>Equipe de especialistas pronta para te ajudar a qualquer momento, 7 dias por semana.</p>
+      </div>
+    </div>
+
+    <div class="formulario">
+      <div class="success-message" id="successMessage">
+        ✅ Cadastro realizado com sucesso! Em breve entraremos em contato.
+      </div>
+      <h2>Cadastre-se agora</h2>
+      <form id="leadForm">
+        <input type="text" id="nome" placeholder="Seu nome completo" required />
+        <input type="email" id="email" placeholder="Seu e-mail" required />
+        <input type="tel" id="telefone" placeholder="Seu telefone (WhatsApp)" />
+        <input type="text" id="empresa" placeholder="Nome da sua empresa" />
+        <select id="segmento" required>
+          <option value="">Selecione seu segmento</option>
+          <option value="tecnologia">Tecnologia</option>
+          <option value="comercio">Comércio</option>
+          <option value="servicos">Serviços</option>
+          <option value="industria">Indústria</option>
+          <option value="saude">Saúde</option>
+          <option value="educacao">Educação</option>
+          <option value="outros">Outros</option>
+        </select>
+        <select id="tamanho" required>
+          <option value="">Tamanho da empresa</option>
+          <option value="micro">Micro (até 9 funcionários)</option>
+          <option value="pequena">Pequena (10-49 funcionários)</option>
+          <option value="media">Média (50-249 funcionários)</option>
+          <option value="grande">Grande (250+ funcionários)</option>
+        </select>
+        <textarea id="objetivos" placeholder="Conte-nos sobre seus principais objetivos e desafios (opcional)" rows="4"></textarea>
+        <button type="submit">Quero me cadastrar</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="produtos-section">
+    <h2>Nossos Produtos</h2>
+    <div class="produtos-grid">
+      <div class="produto">
+        <div class="produto-icon">💼</div>
+        <h3>Business Intelligence</h3>
+        <p>Dashboards interativos e relatórios em tempo real para análise completa do seu negócio.</p>
+        <div class="produto-preco">A partir de R$ 299/mês</div>
+        <ul class="produto-features">
+          <li>✓ Dashboards personalizados</li>
+          <li>✓ Relatórios automatizados</li>
+          <li>✓ Integração com sistemas</li>
+          <li>✓ Suporte 24h</li>
+        </ul>
+      </div>
+      
+      <div class="produto">
+        <div class="produto-icon">🚀</div>
+        <h3>Automação de Processos</h3>
+        <p>Automatize tarefas repetitivas e aumente a produtividade da sua equipe em até 80%.</p>
+        <div class="produto-preco">A partir de R$ 199/mês</div>
+        <ul class="produto-features">
+          <li>✓ Fluxos de trabalho automatizados</li>
+          <li>✓ Integração com ferramentas</li>
+          <li>✓ Notificações inteligentes</li>
+          <li>✓ Análise de performance</li>
+        </ul>
+      </div>
+      
+      <div class="produto">
+        <div class="produto-icon">📊</div>
+        <h3>CRM Inteligente</h3>
+        <p>Gerencie seus clientes de forma eficiente com nossa plataforma de relacionamento completa.</p>
+        <div class="produto-preco">A partir de R$ 149/mês</div>
+        <ul class="produto-features">
+          <li>✓ Gestão de leads</li>
+          <li>✓ Automação de vendas</li>
+          <li>✓ Análise de conversão</li>
+          <li>✓ App móvel incluído</li>
+        </ul>
+      </div>
+      
+      <div class="produto">
+        <div class="produto-icon">🎯</div>
+        <h3>Marketing Digital</h3>
+        <p>Estratégias personalizadas para aumentar sua presença online e gerar mais leads qualificados.</p>
+        <div class="produto-preco">A partir de R$ 399/mês</div>
+        <ul class="produto-features">
+          <li>✓ Campanhas otimizadas</li>
+          <li>✓ Análise de ROI</li>
+          <li>✓ Gestão de redes sociais</li>
+          <li>✓ Consultoria especializada</li>
+        </ul>
+      </div>
+      
+      <div class="produto">
+        <div class="produto-icon">🔒</div>
+        <h3>Segurança Digital</h3>
+        <p>Proteja seus dados e sistemas com nossas soluções avançadas de cibersegurança.</p>
+        <div class="produto-preco">A partir de R$ 249/mês</div>
+        <ul class="produto-features">
+          <li>✓ Monitoramento 24/7</li>
+          <li>✓ Backup automático</li>
+          <li>✓ Firewall avançado</li>
+          <li>✓ Recuperação de dados</li>
+        </ul>
+      </div>
+      
+      <div class="produto">
+        <div class="produto-icon">📱</div>
+        <h3>App Personalizado</h3>
+        <p>Desenvolvimento de aplicativo móvel sob medida para conectar você aos seus clientes.</p>
+        <div class="produto-preco">A partir de R$ 599/mês</div>
+        <ul class="produto-features">
+          <li>✓ Design personalizado</li>
+          <li>✓ iOS e Android</li>
+          <li>✓ Notificações push</li>
+          <li>✓ Atualizações incluídas</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 SeuNegócio.com - Todos os direitos reservados.
+  </footer>
+
+  <script>
+    document.getElementById('leadForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const successMessage = document.getElementById('successMessage');
+
+      if (!nome || !email) {
+        alert('Por favor, preencha todos os campos obrigatórios.');
+        return;
+      }
+
+      // Validação básica de email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Por favor, insira um e-mail válido.');
+        return;
+      }
+
+      // Simula envio dos dados
+      const button = e.target.querySelector('button');
+      const originalText = button.textContent;
+      button.textContent = 'Cadastrando...';
+      button.disabled = true;
+
+      setTimeout(() => {
+        successMessage.style.display = 'block';
+        this.reset();
+        button.textContent = originalText;
+        button.disabled = false;
+        
+        // Esconde a mensagem após 5 segundos
+        setTimeout(() => {
+          successMessage.style.display = 'none';
+        }, 5000);
+      }, 1500);
+    });
+
+    // Adiciona efeito de digitação suave nos inputs
+    document.querySelectorAll('.formulario input, .formulario select, .formulario textarea').forEach(input => {
+      input.addEventListener('focus', function() {
+        this.style.transform = 'scale(1.02)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.style.transform = 'scale(1)';
+      });
+    });
+  </script>
+
+</body>
+</html>
